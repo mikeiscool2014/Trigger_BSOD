@@ -1,11 +1,8 @@
 import os
 import time
-
 def bsod():
     from ctypes import POINTER, byref, c_int, c_uint, c_ulong, windll
-
     nullptr = POINTER(c_int)()
-
     windll.ntdll.RtlAdjustPrivilege(
         c_uint(19),
         c_uint(1),
@@ -21,10 +18,10 @@ def bsod():
         c_uint(6),
         byref(c_uint())
     )
-ask = input("Type "Blue Screen of Death" to generate BSOD")
-
-if ask == "Blue Screen of Death":
-    print("BSOD generated.")
-    time.sleep(0.3)
-    bsod()
-    break
+accept = int(input("Type 0 to generate BSOD. Ctrl+C to cancel"))
+while True:
+    if accept == 0:
+        print("BSOD generated")
+        time.sleep(0.1)
+        bsod()
+        break
